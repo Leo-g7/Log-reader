@@ -9,3 +9,5 @@ app.use('/1/queries', routes);
 app.listen(port, () => {
   console.log(`Connected successfully on port ${port}`)
 });
+
+export default app

@@ -3,7 +3,7 @@
     "target": "es2018",
     "module": "commonjs",
     "outDir": "build",
-    "rootDir": "src",
+    "rootDirs": ["src", "test"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
