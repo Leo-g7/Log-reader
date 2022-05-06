@@ -1,11 +1,10 @@
-import express from 'express';
+import express, { Express } from 'express';
+import routes from './routes/index';
 
-const app = express();
-const port = 4000;
+const app: Express = express();
+const port: number = 4000;
 
-app.get('/', (req, res) => {
-  res.send('hello world')
-});
+app.use('/1/queries', routes);
 
 app.listen(port, () => {
   console.log(`Connected successfully on port ${port}`)
