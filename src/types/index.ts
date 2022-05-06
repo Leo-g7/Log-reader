@@ -1,14 +1,14 @@
 import { DateForamat } from '../enums'
 
-type logDate = {
-  [key: string]: logUrl;
+type logDates = {
+  [key: string]: logUrls;
 }
 
-export type logFile = {
-  [key in DateForamat]: logDate
+export type logs = {
+  [key in DateForamat]: logDates
 }
 
-type logUrl = {
+type logUrls = {
   count: number,
   urls: { [key: string]: logUrlCount }
 }
