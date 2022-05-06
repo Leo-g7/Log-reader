@@ -16,3 +16,10 @@ type logUrls = {
 type logUrlCount = {
   count: number
 }
+
+export type query = {
+  count: number,
+  query: string
+}
+
+export type sortableQuery = [string, number]
