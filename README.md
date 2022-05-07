@@ -2,7 +2,7 @@
 
 ## Project setup
 ```
-npminstall
+npm install
 ```
 
 ### Start Project
