@@ -17,7 +17,7 @@ class LogFileParser {
   constructor(path: string) {
     this.path = path
 
-    console.log(this.path + ' data loding...');
+    console.log(this.path + ' data loading...');
 
     const file: string | null = this.readFile(this.path);
 
