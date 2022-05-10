@@ -21,5 +21,3 @@ export type query = {
   count: number,
   query: string
 }
-
-export type sortableQuery = [string, number]
