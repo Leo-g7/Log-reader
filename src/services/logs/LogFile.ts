@@ -56,7 +56,7 @@ class LogFile {
 
           sortable = this.quickSortQueries(1, sortable, 0, sortable.length - 1)
 
-          const queries: sortableQuery[] = sortable.slice(sortable.length - size, sortable.length).reverse();
+          const queries: sortableQuery[] = sortable.slice(0, size);
 
           for (const querie of queries) {
             result.push({
@@ -78,11 +78,11 @@ class LogFile {
       j: number = right
 
     while (i <= j) {
-      while (items[i][indexToCompare] < pivot[indexToCompare]) {
+      while (items[i][indexToCompare] > pivot[indexToCompare]) {
         i++;
       }
 
-      while (items[j][indexToCompare] > pivot[indexToCompare]) {
+      while (items[j][indexToCompare] < pivot[indexToCompare]) {
         j--;
       }
 
@@ -117,7 +117,6 @@ class LogFile {
     items[leftIndex] = items[rightIndex];
     items[rightIndex] = item;
   }
-
 
 }
 
