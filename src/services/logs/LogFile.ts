@@ -48,17 +48,15 @@ class LogFile {
       if (!isNaN(dataFormat)) {
         if (dataFormat === dateFormatIndex && this.logs[dataFormat][date]) {
 
-          const sortable: sortableQuery[] = [];
+          let sortable: sortableQuery[] = [];
 
           for (const url in this.logs[dataFormat][date].urls) {
             sortable.push([url, this.logs[dataFormat][date].urls[url].count]);
           }
 
-          sortable.sort((a, b) => {
-            return b[1] - a[1];
-          });
+          sortable = this.quickSortQueries(1, sortable, 0, sortable.length - 1)
 
-          const queries: sortableQuery[] = sortable.slice(0, size)
+          const queries: sortableQuery[] = sortable.slice(0, size);
 
           for (const querie of queries) {
             result.push({
@@ -73,6 +71,53 @@ class LogFile {
 
     return result
   }
+
+  private partition = (indexToCompare: number, items: sortableQuery[], left: number, right: number): number => {
+    let pivot: sortableQuery = items[Math.floor((right + left) / 2)],
+      i: number = left,
+      j: number = right
+
+    while (i <= j) {
+      while (items[i][indexToCompare] > pivot[indexToCompare]) {
+        i++;
+      }
+
+      while (items[j][indexToCompare] < pivot[indexToCompare]) {
+        j--;
+      }
+
+      if (i <= j) {
+        this.swap(items, i, j);
+        i++;
+        j--;
+      }
+    }
+    return i;
+  }
+
+  private quickSortQueries = (indexToCompare: number, items: sortableQuery[], left: number, right: number): sortableQuery[] => {
+    let index: number;
+
+    if (items.length > 1) {
+      index = this.partition(indexToCompare, items, left, right);
+
+      if (left < index - 1) {
+        this.quickSortQueries(indexToCompare, items, left, index - 1);
+      }
+      if (index < right) {
+        this.quickSortQueries(indexToCompare, items, index, right);
+      }
+    }
+    return items;
+  }
+
+  private swap = (items: sortableQuery[], leftIndex: number, rightIndex: number): void => {
+    let item: sortableQuery = items[leftIndex];
+
+    items[leftIndex] = items[rightIndex];
+    items[rightIndex] = item;
+  }
+
 }
 
 export default LogFile;
